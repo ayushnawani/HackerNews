@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NewsFetcher.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NewsFetcher *newsFetcher = [[NewsFetcher alloc] init];
+    [newsFetcher startFetching];
     // Override point for customization after application launch.
     return YES;
 }

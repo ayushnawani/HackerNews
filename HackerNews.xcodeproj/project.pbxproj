@@ -15,6 +15,8 @@
 		014FABDC1D75CE2D00E903A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 014FABDA1D75CE2D00E903A7 /* LaunchScreen.storyboard */; };
 		014FABE71D75CE2D00E903A7 /* HackerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014FABE61D75CE2D00E903A7 /* HackerNewsTests.m */; };
 		014FABF21D75CE2D00E903A7 /* HackerNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014FABF11D75CE2D00E903A7 /* HackerNewsUITests.m */; };
+		01BE1C831D955E88005F26AD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BE1C821D955E88005F26AD /* CoreData.framework */; };
+		01BE1C861D955F70005F26AD /* NewsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE1C851D955F70005F26AD /* NewsFetcher.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		014FABED1D75CE2D00E903A7 /* HackerNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		014FABF11D75CE2D00E903A7 /* HackerNewsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerNewsUITests.m; sourceTree = "<group>"; };
 		014FABF31D75CE2D00E903A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01BE1C821D955E88005F26AD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		01BE1C841D955F70005F26AD /* NewsFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFetcher.h; sourceTree = "<group>"; };
+		01BE1C851D955F70005F26AD /* NewsFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFetcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01BE1C831D955E88005F26AD /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +87,7 @@
 		014FABC01D75CE2D00E903A7 = {
 			isa = PBXGroup;
 			children = (
+				01BE1C821D955E88005F26AD /* CoreData.framework */,
 				014FABCB1D75CE2D00E903A7 /* HackerNews */,
 				014FABE51D75CE2D00E903A7 /* HackerNewsTests */,
 				014FABF01D75CE2D00E903A7 /* HackerNewsUITests */,
@@ -110,6 +117,8 @@
 				014FABDA1D75CE2D00E903A7 /* LaunchScreen.storyboard */,
 				014FABDD1D75CE2D00E903A7 /* Info.plist */,
 				014FABCC1D75CE2D00E903A7 /* Supporting Files */,
+				01BE1C841D955F70005F26AD /* NewsFetcher.h */,
+				01BE1C851D955F70005F26AD /* NewsFetcher.m */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -272,6 +281,7 @@
 			files = (
 				014FABD41D75CE2D00E903A7 /* ViewController.m in Sources */,
 				014FABD11D75CE2D00E903A7 /* AppDelegate.m in Sources */,
+				01BE1C861D955F70005F26AD /* NewsFetcher.m in Sources */,
 				014FABCE1D75CE2D00E903A7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +506,7 @@
 				014FABF81D75CE2D00E903A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		014FABF91D75CE2D00E903A7 /* Build configuration list for PBXNativeTarget "HackerNewsTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +515,7 @@
 				014FABFB1D75CE2D00E903A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		014FABFC1D75CE2D00E903A7 /* Build configuration list for PBXNativeTarget "HackerNewsUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +524,7 @@
 				014FABFE1D75CE2D00E903A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
