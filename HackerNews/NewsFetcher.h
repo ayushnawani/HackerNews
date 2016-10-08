@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NewsFetcher : NSObject<NSURLConnectionDelegate>
+@interface NewsFetcher : NSObject
 -(void)startFetching;
 @end
