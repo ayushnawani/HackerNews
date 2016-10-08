@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NewsFetcher : NSObject
--(void)startFetching;
+
+-(NSMutableArray*)fetchNewsFromServer;
+
 @end

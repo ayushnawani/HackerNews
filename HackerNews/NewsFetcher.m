@@ -13,53 +13,45 @@
     NSMutableData *_responseData;
 }
 
--(void)startFetching {
+-(NSMutableArray*)fetchNewsFromServer {
     
-//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://hacker-news.firebaseio.com/v0/topstories.json"]];
-//    NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSString *topStoriesURL = @"https://hacker-news.firebaseio.com/v0/topstories.json";
+    NSString *initalString = @"https://hacker-news.firebaseio.com/v0/item/";
+    NSString *jsonString = @".json";
+    
+    NSMutableArray *allStories = [NSMutableArray array];
 
-//    NSMutableURLRequest *request =
-//    [NSMutableURLRequest requestWithURL:[NSURL
-//                                         URLWithString:@"https://hacker-news.firebaseio.com/v0/topstories.json"]
-//                                        cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-//                                        timeoutInterval:10];
-//    [request setHTTPMethod: @"GET"];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:topStoriesURL]];
+    NSArray *topStoriesList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+
+    for (NSInteger i = 0; i < 60; i++) {
+        NSNumber *story = topStoriesList[i];
+
+        NSString *eachStoriesURL =[NSString stringWithFormat:@"%@%@%@",initalString,story.stringValue,jsonString];
+        
+        NSData *storyData = [NSData dataWithContentsOfURL:[NSURL URLWithString:eachStoriesURL]];
+        NSArray *storyArray = [NSJSONSerialization JSONObjectWithData:storyData options:kNilOptions error:nil];
+        [allStories addObject:storyArray];
+    }
     
-//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty"]];
-//    NSArray *topStoriesList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//    for (NSInteger i = 0; i < allStories.count ; i++) {
+//        for (NSInteger j = 0; j < allStories.count-1; j++) {
+//            NSDictionary *currentSingleStory  = [allStories objectAtIndex:j];
+//            NSNumber *currentScore = [currentSingleStory objectForKey:@"score"];
+//            
+//            NSDictionary *nextSingleStory  = [allStories objectAtIndex:j+1];
+//            NSNumber *nextScore = [nextSingleStory objectForKey:@"score"];
+//            
+//            if (currentScore.doubleValue > nextScore.doubleValue) {
+//                [allStories insertObject:nextSingleStory atIndex:j];
+//                [allStories insertObject:currentSingleStory atIndex:j+1];
+//            }
+//            
+//        }
+//        
+//    }
+    
+    return allStories;
 }
-
-
-//#pragma mark NSURLConnection Delegate Methods
-//
-//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-//// A response has been received, this is where we initialize the instance var you created
-//// so that we can append data to it in the didReceiveData method
-//// Furthermore, this method is called each time there is a redirect so reinitializing it
-//// also serves to clear it
-//_responseData = [[NSMutableData alloc] init];
-//}
-//
-//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-//    // Append the new data to the instance variable you declared
-//    [_responseData appendData:data];
-//}
-//
-//- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
-//                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
-//    // Return nil to indicate not necessary to store a cached response for this connection
-//    return nil;
-//}
-//
-//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-//    // The request is complete and data has been received
-//    // You can parse the stuff in your instance variable now
-//    
-//}
-//
-//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-//    // The request has failed for some reason!
-//    // Check the error var
-//}
 
 @end

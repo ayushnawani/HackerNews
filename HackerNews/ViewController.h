@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface ViewController : UITableViewController
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
 

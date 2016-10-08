@@ -17,6 +17,9 @@
 		014FABF21D75CE2D00E903A7 /* HackerNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014FABF11D75CE2D00E903A7 /* HackerNewsUITests.m */; };
 		01BE1C831D955E88005F26AD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BE1C821D955E88005F26AD /* CoreData.framework */; };
 		01BE1C861D955F70005F26AD /* NewsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE1C851D955F70005F26AD /* NewsFetcher.m */; settings = {ASSET_TAGS = (); }; };
+		01C8DDE51DA8C1BE009D86CD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		01C8DDEA1DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C8DDE71DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		01C8DDEB1DA8C4E7009D86CD /* NewsStories.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C8DDE91DA8C4E7009D86CD /* NewsStories.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,11 @@
 		01BE1C821D955E88005F26AD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		01BE1C841D955F70005F26AD /* NewsFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFetcher.h; sourceTree = "<group>"; };
 		01BE1C851D955F70005F26AD /* NewsFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFetcher.m; sourceTree = "<group>"; };
+		01C8DDE41DA8C1BE009D86CD /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		01C8DDE61DA8C4E7009D86CD /* NewsStories+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsStories+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C8DDE71DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewsStories+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C8DDE81DA8C4E7009D86CD /* NewsStories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsStories.h; sourceTree = "<group>"; };
+		01C8DDE91DA8C4E7009D86CD /* NewsStories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsStories.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,11 @@
 				014FABCC1D75CE2D00E903A7 /* Supporting Files */,
 				01BE1C841D955F70005F26AD /* NewsFetcher.h */,
 				01BE1C851D955F70005F26AD /* NewsFetcher.m */,
+				01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */,
+				01C8DDE61DA8C4E7009D86CD /* NewsStories+CoreDataProperties.h */,
+				01C8DDE71DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m */,
+				01C8DDE81DA8C4E7009D86CD /* NewsStories.h */,
+				01C8DDE91DA8C4E7009D86CD /* NewsStories.m */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -279,7 +292,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C8DDEA1DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m in Sources */,
 				014FABD41D75CE2D00E903A7 /* ViewController.m in Sources */,
+				01C8DDEB1DA8C4E7009D86CD /* NewsStories.m in Sources */,
+				01C8DDE51DA8C1BE009D86CD /* DataModel.xcdatamodeld in Sources */,
 				014FABD11D75CE2D00E903A7 /* AppDelegate.m in Sources */,
 				01BE1C861D955F70005F26AD /* NewsFetcher.m in Sources */,
 				014FABCE1D75CE2D00E903A7 /* main.m in Sources */,
@@ -527,6 +543,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				01C8DDE41DA8C1BE009D86CD /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 01C8DDE41DA8C1BE009D86CD /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 014FABC11D75CE2D00E903A7 /* Project object */;
 }
