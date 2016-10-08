@@ -24,7 +24,8 @@
 {
 
     NewsFetcher *newsFetcher = [[NewsFetcher alloc] init];
-
+    allStories = [newsFetcher fetchNewsFromServer];
+    [self saveNews];
     [self fetchNewsFromDB];
     
 //    if (!(allNews.count < 70)) {
@@ -104,7 +105,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     NewsStories *story = allNews[indexPath.item];
-    NSString *test = story.title;
+    UILabel *title = (UILabel *)[cell viewWithTag:1];
+    UILabel *author = (UILabel *)[cell viewWithTag:2];
+    title.text = story.title;
+    author.text = story.author;
     return cell;
 }
 

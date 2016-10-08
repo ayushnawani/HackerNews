@@ -23,7 +23,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  
-    ViewController *viewController = (ViewController *)self.window.rootViewController;
+    UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
+    ViewController *viewController = (ViewController *)navigationController.viewControllers[0];
     viewController.managedObjectContext = self.managedObjectContext;
     
     // Override point for customization after application launch.
