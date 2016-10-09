@@ -30,11 +30,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="124" id="e0R-31-uY7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="124" id="e0R-31-uY7">
                                 <rect key="frame" x="0.0" y="92" width="414" height="124"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e0R-31-uY7" id="sN4-Vi-rb8">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="123.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="123.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRF-fy-EQN">
@@ -55,13 +55,16 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UO-Mo-pxA">
-                                            <rect key="frame" x="141" y="68" width="83" height="33"/>
+                                            <rect key="frame" x="141" y="68" width="219" height="33"/>
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="2HN-Za-MSA" kind="push" id="JXM-lv-Thd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -69,15 +72,44 @@
                             <outlet property="delegate" destination="tJF-ft-hx2" id="oZ1-8a-XNZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Hacker News" id="Lvg-Lw-uMd">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="zVu-7N-fjJ"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SE7-5s-KNc"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Hacker News" id="Lvg-Lw-uMd"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIW-FB-BVr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="745" y="-491"/>
+        </scene>
+        <!--Read News-->
+        <scene sceneID="oM8-ul-Id1">
+            <objects>
+                <viewController id="2HN-Za-MSA" customClass="ShowStories" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zoC-uh-bEv"/>
+                        <viewControllerLayoutGuide type="bottom" id="ieY-KR-ODN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wlE-oN-8J4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqj-55-ctm">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="UfW-oE-39D"/>
+                                </constraints>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Read News" id="edM-qY-M3h"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="webView" destination="mqj-55-ctm" id="mpd-Yt-Whe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1P4-YB-Mez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1472" y="-491"/>
         </scene>
     </scenes>
 </document>

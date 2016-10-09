@@ -15,6 +15,8 @@
 		014FABDC1D75CE2D00E903A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 014FABDA1D75CE2D00E903A7 /* LaunchScreen.storyboard */; };
 		014FABE71D75CE2D00E903A7 /* HackerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014FABE61D75CE2D00E903A7 /* HackerNewsTests.m */; };
 		014FABF21D75CE2D00E903A7 /* HackerNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014FABF11D75CE2D00E903A7 /* HackerNewsUITests.m */; };
+		01542AC61DAA187400B3985B /* ShowStories.m in Sources */ = {isa = PBXBuildFile; fileRef = 01542AC51DAA187400B3985B /* ShowStories.m */; settings = {ASSET_TAGS = (); }; };
+		01542ACA1DAA230000B3985B /* NoNews.html in Resources */ = {isa = PBXBuildFile; fileRef = 01542AC91DAA230000B3985B /* NoNews.html */; };
 		01BE1C831D955E88005F26AD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BE1C821D955E88005F26AD /* CoreData.framework */; };
 		01BE1C861D955F70005F26AD /* NewsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE1C851D955F70005F26AD /* NewsFetcher.m */; settings = {ASSET_TAGS = (); }; };
 		01C8DDE51DA8C1BE009D86CD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
@@ -56,6 +58,9 @@
 		014FABED1D75CE2D00E903A7 /* HackerNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		014FABF11D75CE2D00E903A7 /* HackerNewsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerNewsUITests.m; sourceTree = "<group>"; };
 		014FABF31D75CE2D00E903A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01542AC41DAA187400B3985B /* ShowStories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowStories.h; sourceTree = "<group>"; };
+		01542AC51DAA187400B3985B /* ShowStories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowStories.m; sourceTree = "<group>"; };
+		01542AC91DAA230000B3985B /* NoNews.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = NoNews.html; sourceTree = "<group>"; };
 		01BE1C821D955E88005F26AD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		01BE1C841D955F70005F26AD /* NewsFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFetcher.h; sourceTree = "<group>"; };
 		01BE1C851D955F70005F26AD /* NewsFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFetcher.m; sourceTree = "<group>"; };
@@ -116,22 +121,25 @@
 		014FABCB1D75CE2D00E903A7 /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
+				01542AC91DAA230000B3985B /* NoNews.html */,
 				014FABCF1D75CE2D00E903A7 /* AppDelegate.h */,
 				014FABD01D75CE2D00E903A7 /* AppDelegate.m */,
-				014FABD21D75CE2D00E903A7 /* ViewController.h */,
-				014FABD31D75CE2D00E903A7 /* ViewController.m */,
-				014FABD51D75CE2D00E903A7 /* Main.storyboard */,
 				014FABD81D75CE2D00E903A7 /* Assets.xcassets */,
-				014FABDA1D75CE2D00E903A7 /* LaunchScreen.storyboard */,
+				01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */,
 				014FABDD1D75CE2D00E903A7 /* Info.plist */,
-				014FABCC1D75CE2D00E903A7 /* Supporting Files */,
+				014FABDA1D75CE2D00E903A7 /* LaunchScreen.storyboard */,
+				014FABD51D75CE2D00E903A7 /* Main.storyboard */,
 				01BE1C841D955F70005F26AD /* NewsFetcher.h */,
 				01BE1C851D955F70005F26AD /* NewsFetcher.m */,
-				01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */,
-				01C8DDE61DA8C4E7009D86CD /* NewsStories+CoreDataProperties.h */,
-				01C8DDE71DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m */,
 				01C8DDE81DA8C4E7009D86CD /* NewsStories.h */,
 				01C8DDE91DA8C4E7009D86CD /* NewsStories.m */,
+				01C8DDE61DA8C4E7009D86CD /* NewsStories+CoreDataProperties.h */,
+				01C8DDE71DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m */,
+				01542AC41DAA187400B3985B /* ShowStories.h */,
+				01542AC51DAA187400B3985B /* ShowStories.m */,
+				014FABCC1D75CE2D00E903A7 /* Supporting Files */,
+				014FABD21D75CE2D00E903A7 /* ViewController.h */,
+				014FABD31D75CE2D00E903A7 /* ViewController.m */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01542ACA1DAA230000B3985B /* NoNews.html in Resources */,
 				014FABDC1D75CE2D00E903A7 /* LaunchScreen.storyboard in Resources */,
 				014FABD91D75CE2D00E903A7 /* Assets.xcassets in Resources */,
 				014FABD71D75CE2D00E903A7 /* Main.storyboard in Resources */,
@@ -294,6 +303,7 @@
 			files = (
 				01C8DDEA1DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m in Sources */,
 				014FABD41D75CE2D00E903A7 /* ViewController.m in Sources */,
+				01542AC61DAA187400B3985B /* ShowStories.m in Sources */,
 				01C8DDEB1DA8C4E7009D86CD /* NewsStories.m in Sources */,
 				01C8DDE51DA8C1BE009D86CD /* DataModel.xcdatamodeld in Sources */,
 				014FABD11D75CE2D00E903A7 /* AppDelegate.m in Sources */,

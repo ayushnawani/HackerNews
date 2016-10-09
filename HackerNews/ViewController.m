@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "NewsFetcher.h"
 #import "NewsStories.h"
+#import "ShowStories.h"
 
 @interface ViewController ()
 
@@ -19,6 +20,7 @@
     NSMutableArray *allStories;
     NSMutableArray *allNews;
     NewsFetcher *newsFetcher;
+    NSString *url;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -26,7 +28,9 @@
     newsFetcher = [[NewsFetcher alloc] init];
     newsFetcher.managedObjectContext = self.managedObjectContext;
     
-    if (allNews.count < 400) {
+    [self fetchNewsFromDB];
+    
+    if (allNews.count < 1) {
         //NSInteger nextList = allNews.count;
         allStories = [newsFetcher fetchNewsFromServer:0 endIndex:10];
         [self saveNews];
@@ -119,7 +123,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 400;
+    return [newsFetcher topStoriesCount];
 }
 
 -(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,9 +131,9 @@
     NSInteger item  = indexPath.item;
     if (item > 0 && allNews.count-5 == indexPath.item) {
         
-        if (allNews.count < 400) {
+        if (allNews.count < [newsFetcher topStoriesCount]) {
             NSInteger nextList = allNews.count;
-            allStories = [newsFetcher fetchNewsFromServer:nextList endIndex:nextList + 5];
+            allStories = [newsFetcher fetchNewsFromServer:nextList endIndex:nextList + 15];
             [self saveNews];
             [self fetchNewsFromDB];
         }
@@ -138,15 +142,22 @@
 
 # pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
     NewsStories *story = allNews[indexPath.item];
-    
-    NSString *url = story.url;
-    
+    url = story.url;
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    
+    ShowStories *showStories = (ShowStories*) segue.destinationViewController;
+    showStories.url = url;
 }
 
 @end

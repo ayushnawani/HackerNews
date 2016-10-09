@@ -14,5 +14,5 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 -(NSMutableArray*)fetchNewsFromServer:(NSInteger)startIndex endIndex:(NSInteger)endIndex;
-
+-(NSInteger)topStoriesCount;
 @end

@@ -28,11 +28,11 @@
 
     return  self;
 }
+-(NSInteger)topStoriesCount {
+  return topStoriesList.count;
+}
 
 -(NSMutableArray*)fetchNewsFromServer:(NSInteger)startIndex endIndex:(NSInteger)endIndex{
-    
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:topStoriesURL]];
-    NSArray *topStoriesList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     
     NSMutableArray *allStories = [NSMutableArray array];
     
@@ -47,23 +47,6 @@
         [allStories addObject:storyArray];
     }
     
-    
-    //    for (NSInteger i = 0; i < allStories.count ; i++) {
-    //        for (NSInteger j = 0; j < allStories.count-1; j++) {
-    //            NSDictionary *currentSingleStory  = [allStories objectAtIndex:j];
-    //            NSNumber *currentScore = [currentSingleStory objectForKey:@"score"];
-    //
-    //            NSDictionary *nextSingleStory  = [allStories objectAtIndex:j+1];
-    //            NSNumber *nextScore = [nextSingleStory objectForKey:@"score"];
-    //
-    //            if (currentScore.doubleValue > nextScore.doubleValue) {
-    //                [allStories insertObject:nextSingleStory atIndex:j];
-    //                [allStories insertObject:currentSingleStory atIndex:j+1];
-    //            }
-    //
-    //        }
-    //
-    //    }
     NSSortDescriptor *valueDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"score" ascending:YES];
     NSMutableArray *sorted = [allStories sortedArrayUsingDescriptors:@[valueDescriptor]];
 
