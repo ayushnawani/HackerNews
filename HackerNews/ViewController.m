@@ -21,6 +21,7 @@
     NSMutableArray *allNews;
     NewsFetcher *newsFetcher;
     NSString *url;
+    NSArray *kids;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -46,9 +47,7 @@
 - (BOOL)saveNews {
     
     NSDictionary *story;
-    
     NSManagedObjectContext *context = [self managedObjectContext];
-    
     
     for (NSInteger i = 0; i < allStories.count; i++) {
         
@@ -56,27 +55,25 @@
         
         NSNumber *score = [story objectForKey:@"score"];
         NSString *author = [story objectForKey:@"by"];
-        NSString *url = [story objectForKey:@"url"];
+        NSString *urlValue = [story objectForKey:@"url"];
         NSString *title = [story objectForKey:@"title"];
-        
+        NSArray *kids = [story objectForKey:@"kids"];
         
         NSManagedObject *newStoriesObject = [NSEntityDescription insertNewObjectForEntityForName:@"NewsStories" inManagedObjectContext:context];
         
         [newStoriesObject setValue:score forKey:@"score"];
-        [newStoriesObject setValue:url forKey:@"url"];
+        [newStoriesObject setValue:urlValue forKey:@"url"];
         [newStoriesObject setValue:author forKey:@"author"];
         [newStoriesObject setValue:title forKey:@"title"];
+        [newStoriesObject setValue:kids forKey:@"kids"];
         
         NSError *error = nil;
+        
         // Save the object to persistent store
-        
-        
         if (![context save:&error]) {
             NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
-        
     }
-    
     return true;
 }
 
@@ -84,9 +81,7 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"NewsStories"];
     allNews = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
-    //    [self.tableView reloadData];
-    
+        
     return true;
     
 }
@@ -146,6 +141,7 @@
 
     NewsStories *story = allNews[indexPath.item];
     url = story.url;
+    kids = story.kids;
     return indexPath;
 }
 
@@ -155,9 +151,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue
                  sender:(id)sender
 {
-    
     ShowStories *showStories = (ShowStories*) segue.destinationViewController;
     showStories.url = url;
+    showStories.kids = kids;
 }
 
 @end

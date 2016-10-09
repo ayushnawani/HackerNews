@@ -91,25 +91,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqj-55-ctm">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ug0-zH-ZDS">
+                                <rect key="frame" x="0.0" y="64" width="414" height="299"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="UfW-oE-39D"/>
-                                </constraints>
                             </webView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="44" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Akt-UL-wAc">
+                                <rect key="frame" x="0.0" y="371" width="408" height="357"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" rowHeight="44" id="C9d-Ad-aV5">
+                                        <rect key="frame" x="0.0" y="108" width="408" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C9d-Ad-aV5" id="Lu4-8W-2Bp">
+                                            <rect key="frame" x="0.0" y="0.0" width="408" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2HN-Za-MSA" id="3uj-7O-NHq"/>
+                                    <outlet property="delegate" destination="2HN-Za-MSA" id="vNz-3k-gnN"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Read News" id="edM-qY-M3h"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="webView" destination="mqj-55-ctm" id="mpd-Yt-Whe"/>
+                        <outlet property="commentTable" destination="Akt-UL-wAc" id="HUo-QO-2dz"/>
+                        <outlet property="webView" destination="Ug0-zH-ZDS" id="Xdp-e0-jZw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1P4-YB-Mez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1472" y="-491"/>
+            <point key="canvasLocation" x="1514" y="-497"/>
         </scene>
     </scenes>
 </document>

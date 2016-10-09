@@ -12,6 +12,8 @@
 @interface ShowStories : UIViewController
 
 @property(nonatomic,strong) NSString *url;
+@property(nonatomic,strong) NSArray *kids;
 @property(nonatomic,weak) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UITableView *commentTable;
 
 @end

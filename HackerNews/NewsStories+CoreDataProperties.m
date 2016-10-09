@@ -17,5 +17,6 @@
 @dynamic title;
 @dynamic author;
 @dynamic score;
+@dynamic kids;
 
 @end
