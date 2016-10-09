@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface NewsFetcher : NSObject
 
--(NSMutableArray*)fetchNewsFromServer;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+-(NSMutableArray*)fetchNewsFromServer:(NSInteger)startIndex endIndex:(NSInteger)endIndex;
 
 @end
