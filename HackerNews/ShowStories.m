@@ -23,13 +23,26 @@
     if (self.url.length > 0) {
         [self fetchKids];
     }
-    self.commentTable.frame = self.view.frame;
-    self.commentTable.scrollEnabled = YES;
-    self.commentTable.bounces = YES;
+    //CGRect frame = self.commentTable.frame;
+    //frame.size.height = self.commentTable.contentSize.height;//commenting this code worked.
+    //self.commentTable.frame = frame;
 
 }
 
 - (void)viewDidLoad {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 250, 5)];
+    [labelView setFont:[UIFont boldSystemFontOfSize:16]];
+    labelView.text = @"Comments";
+ 
+    [headerView addSubview:labelView];
+    [labelView sizeToFit];
+    labelView.center = headerView.center;
+    self.commentTable.tableHeaderView = headerView;
+    self.commentTable.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+    //self.commentTable.frame = self.view.frame;
+    self.commentTable.scrollEnabled = YES;
+
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
@@ -47,6 +60,7 @@
               textEncodingName:@"UTF-8" baseURL:baseURL];
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -88,10 +102,43 @@
     
     NSInteger item = indexPath.item;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
-    cell.textLabel.text = commentsText[item];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:@"comment"];
+        
+        [[cell textLabel] setNumberOfLines:0]; // unlimited number of lines
+        [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+        [[cell textLabel] setFont:[UIFont systemFontOfSize: 14.0]];
+    }
+    else {
+        [[cell textLabel] setNumberOfLines:0]; // unlimited number of lines
+        [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+        [[cell textLabel] setFont:[UIFont systemFontOfSize: 14.0]];
+    }
+    
+    [[cell textLabel] setText:commentsText[item]];
+
+    //cell.textLabel.text = commentsText[item];
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // this method is called for each cell and returns height
+    NSString * text = commentsText[indexPath.item];
+    CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize: 14.0] forWidth:[tableView frame].size.width - 40.0 lineBreakMode:NSLineBreakByWordWrapping];
+    // return either default height or height to fit the text
+    return textSize.height < 44.0 ? 44.0 : textSize.height;
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 55.0;
+}
 
 @end

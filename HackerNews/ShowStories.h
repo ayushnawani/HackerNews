@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ShowStories : UIViewController
+@interface ShowStories : UIViewController <UITableViewDelegate>
 
 @property(nonatomic,strong) NSString *url;
 @property(nonatomic,strong) NSArray *kids;
