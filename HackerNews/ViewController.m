@@ -22,6 +22,7 @@
     NewsFetcher *newsFetcher;
     NSString *url;
     NSArray *kids;
+    NSNumber *newsId;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -58,6 +59,7 @@
         NSString *urlValue = [story objectForKey:@"url"];
         NSString *title = [story objectForKey:@"title"];
         NSArray *kids = [story objectForKey:@"kids"];
+        NSNumber *id = [story objectForKey:@"id"];
         
         NSManagedObject *newStoriesObject = [NSEntityDescription insertNewObjectForEntityForName:@"NewsStories" inManagedObjectContext:context];
         
@@ -66,6 +68,7 @@
         [newStoriesObject setValue:author forKey:@"author"];
         [newStoriesObject setValue:title forKey:@"title"];
         [newStoriesObject setValue:kids forKey:@"kids"];
+        [newStoriesObject setValue:id forKey:@"newsId"];
         
         NSError *error = nil;
         
@@ -142,6 +145,7 @@
     NewsStories *story = allNews[indexPath.item];
     url = story.url;
     kids = story.kids;
+    newsId = story.newsId;
     return indexPath;
 }
 
@@ -154,6 +158,9 @@
     ShowStories *showStories = (ShowStories*) segue.destinationViewController;
     showStories.url = url;
     showStories.kids = kids;
+    showStories.newsId = newsId;
+    showStories.managedObjectContext = self.managedObjectContext;
+    
 }
 
 @end

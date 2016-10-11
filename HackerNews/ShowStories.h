@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 
-@interface ShowStories : UIViewController <UITableViewDelegate>
+@interface ShowStories : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong) NSString *url;
+@property(nonatomic,strong) NSNumber *newsId;
 @property(nonatomic,strong) NSArray *kids;
 @property(nonatomic,weak) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) IBOutlet UITableView *commentTable;
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
 @end

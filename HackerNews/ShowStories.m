@@ -7,6 +7,7 @@
 //
 
 #import "ShowStories.h"
+#import "NewsComments.h"
 
 @interface ShowStories ()
 
@@ -15,26 +16,47 @@
 @implementation ShowStories
 {
     NSMutableArray *commentsText;
+    NSMutableArray *allDBComments;
+    NSMutableArray *allServerComments;
+    NSArray *currentDBComment;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     commentsText = [NSMutableArray array];
+    allDBComments = [[NSMutableArray alloc] init];
+    allServerComments = [[NSMutableArray alloc] init];
+    
     [super viewWillAppear:animated];
     if (self.url.length > 0) {
-        [self fetchKids];
+        [self fetchCommentsFromDB];
+        if(allDBComments.count < 1) {
+            [self fetchCommentsFromServer];
+            [self saveCommentsToDB];
+            [self fetchCommentsFromDB];
+        }
+        else {
+            for (NSInteger i = 0; i < allDBComments.count; i++) {
+                NewsComments *commentItem = allDBComments[i];
+                if (![commentItem.newsId isEqual:self.newsId]) {
+                    [self fetchCommentsFromServer];
+                    [self saveCommentsToDB];
+                    [self fetchCommentsFromDB];
+                    break;
+                }
+            }
+        
+        
+        }
     }
-    //CGRect frame = self.commentTable.frame;
-    //frame.size.height = self.commentTable.contentSize.height;//commenting this code worked.
-    //self.commentTable.frame = frame;
-
 }
 
 - (void)viewDidLoad {
+    
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 250, 5)];
     [labelView setFont:[UIFont boldSystemFontOfSize:16]];
     labelView.text = @"Comments";
- 
+    
     [headerView addSubview:labelView];
     [labelView sizeToFit];
     labelView.center = headerView.center;
@@ -42,7 +64,7 @@
     self.commentTable.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     //self.commentTable.frame = self.view.frame;
     self.commentTable.scrollEnabled = YES;
-
+    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
@@ -68,23 +90,75 @@
 }
 
 
--(void)fetchKids {
+-(void)fetchCommentsFromServer {
     
     NSString *initalString = @"https://hacker-news.firebaseio.com/v0/item/";
     NSString *jsonString = @".json";
     
-    for (NSInteger i ; i < [self.kids count]; i++) {
+    for (NSInteger i = 0 ; i < [self.kids count]; i++) {
         NSString *commentURL = [NSString stringWithFormat:@"%@%@%@",initalString,self.kids[i],jsonString ];
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:commentURL]];
         NSDictionary *commentsDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        
+        [allServerComments addObject:commentsDict];
+        
         if ([[commentsDict objectForKey:@"type"] isEqualToString:@"comment"]) {
             if ([commentsDict objectForKey:@"text"] ) {
                 [commentsText addObject:[commentsDict objectForKey:@"text"]];
             }
         }
     }
-    
 }
+
+
+-(BOOL)fetchCommentsFromDB {
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"NewsComments"];
+    allDBComments = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    for (NSInteger i = 0; i < allDBComments.count; i++) {
+        NewsComments *commentItem = allDBComments[i];
+        if ([self.newsId isEqualToValue:commentItem.newsId]) {
+            currentDBComment = commentItem.commentArray;
+            break;
+        }
+    }
+    return true;
+}
+
+-(void)saveCommentsToDB {
+    
+    NSDictionary *comment;
+    NSMutableArray *commentArray = [NSMutableArray array];
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSManagedObject *commentManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"NewsComments" inManagedObjectContext:context];
+    
+    for(NSInteger i = 0 ; i < allServerComments.count ; i++) {
+        comment = allServerComments[i];
+        NSString *commentText = [comment objectForKey:@"text"];
+        NSString *commentUser = [comment objectForKey:@"by"];
+        NSString *commentId = [comment objectForKey:@"id"];
+        
+        
+        NSMutableDictionary *commentDictionary = [NSMutableDictionary dictionary];
+        
+        [commentDictionary setValue:commentText forKey:@"commentText"];
+        [commentDictionary setValue:commentUser forKey:@"commentUser"];
+        [commentDictionary setValue:commentId forKey:@"commentId"];
+        [commentArray addObject:commentDictionary];
+    }
+    
+    [commentManagedObject setValue:commentArray forKey:@"commentArray"];
+    [commentManagedObject setValue:self.newsId forKey:@"newsId"];
+    
+    NSError *error = nil;
+    
+    // Save the object to persistent store
+    if (![context save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+    }
+}
+
 /*
  #pragma mark - Navigation
  
@@ -94,8 +168,10 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+# pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [commentsText count];
+    return [currentDBComment count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,17 +193,19 @@
         [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
         [[cell textLabel] setFont:[UIFont systemFontOfSize: 14.0]];
     }
+    NSDictionary *commentItem = currentDBComment[item];
+    NSString *commentText = [commentItem objectForKey:@"commentText"];
+    [[cell textLabel] setText:commentText];
     
-    [[cell textLabel] setText:commentsText[item]];
-
-    //cell.textLabel.text = commentsText[item];
     return cell;
 }
 
+# pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // this method is called for each cell and returns height
-    NSString * text = commentsText[indexPath.item];
+    NSDictionary *commentItem = currentDBComment[indexPath.item];
+    NSString *text = [commentItem objectForKey:@"commentItem"];
     CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize: 14.0] forWidth:[tableView frame].size.width - 40.0 lineBreakMode:NSLineBreakByWordWrapping];
     // return either default height or height to fit the text
     return textSize.height < 44.0 ? 44.0 : textSize.height;

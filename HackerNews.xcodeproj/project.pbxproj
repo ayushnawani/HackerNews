@@ -17,6 +17,8 @@
 		014FABF21D75CE2D00E903A7 /* HackerNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014FABF11D75CE2D00E903A7 /* HackerNewsUITests.m */; };
 		01542AC61DAA187400B3985B /* ShowStories.m in Sources */ = {isa = PBXBuildFile; fileRef = 01542AC51DAA187400B3985B /* ShowStories.m */; settings = {ASSET_TAGS = (); }; };
 		01542ACA1DAA230000B3985B /* NoNews.html in Resources */ = {isa = PBXBuildFile; fileRef = 01542AC91DAA230000B3985B /* NoNews.html */; };
+		01AA353F1DACA56100EDC320 /* NewsComments+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AA353C1DACA56100EDC320 /* NewsComments+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		01AA35401DACA56100EDC320 /* NewsComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AA353E1DACA56100EDC320 /* NewsComments.m */; settings = {ASSET_TAGS = (); }; };
 		01BE1C831D955E88005F26AD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BE1C821D955E88005F26AD /* CoreData.framework */; };
 		01BE1C861D955F70005F26AD /* NewsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE1C851D955F70005F26AD /* NewsFetcher.m */; settings = {ASSET_TAGS = (); }; };
 		01C8DDE51DA8C1BE009D86CD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
@@ -61,6 +63,10 @@
 		01542AC41DAA187400B3985B /* ShowStories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowStories.h; sourceTree = "<group>"; };
 		01542AC51DAA187400B3985B /* ShowStories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowStories.m; sourceTree = "<group>"; };
 		01542AC91DAA230000B3985B /* NoNews.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = NoNews.html; sourceTree = "<group>"; };
+		01AA353B1DACA56100EDC320 /* NewsComments+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsComments+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01AA353C1DACA56100EDC320 /* NewsComments+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewsComments+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01AA353D1DACA56100EDC320 /* NewsComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsComments.h; sourceTree = "<group>"; };
+		01AA353E1DACA56100EDC320 /* NewsComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsComments.m; sourceTree = "<group>"; };
 		01BE1C821D955E88005F26AD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		01BE1C841D955F70005F26AD /* NewsFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFetcher.h; sourceTree = "<group>"; };
 		01BE1C851D955F70005F26AD /* NewsFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFetcher.m; sourceTree = "<group>"; };
@@ -126,6 +132,10 @@
 				014FABD01D75CE2D00E903A7 /* AppDelegate.m */,
 				014FABD81D75CE2D00E903A7 /* Assets.xcassets */,
 				01C8DDE31DA8C1BE009D86CD /* DataModel.xcdatamodeld */,
+				01AA353B1DACA56100EDC320 /* NewsComments+CoreDataProperties.h */,
+				01AA353C1DACA56100EDC320 /* NewsComments+CoreDataProperties.m */,
+				01AA353D1DACA56100EDC320 /* NewsComments.h */,
+				01AA353E1DACA56100EDC320 /* NewsComments.m */,
 				014FABDD1D75CE2D00E903A7 /* Info.plist */,
 				014FABDA1D75CE2D00E903A7 /* LaunchScreen.storyboard */,
 				014FABD51D75CE2D00E903A7 /* Main.storyboard */,
@@ -303,8 +313,10 @@
 			files = (
 				01C8DDEA1DA8C4E7009D86CD /* NewsStories+CoreDataProperties.m in Sources */,
 				014FABD41D75CE2D00E903A7 /* ViewController.m in Sources */,
+				01AA35401DACA56100EDC320 /* NewsComments.m in Sources */,
 				01542AC61DAA187400B3985B /* ShowStories.m in Sources */,
 				01C8DDEB1DA8C4E7009D86CD /* NewsStories.m in Sources */,
+				01AA353F1DACA56100EDC320 /* NewsComments+CoreDataProperties.m in Sources */,
 				01C8DDE51DA8C1BE009D86CD /* DataModel.xcdatamodeld in Sources */,
 				014FABD11D75CE2D00E903A7 /* AppDelegate.m in Sources */,
 				01BE1C861D955F70005F26AD /* NewsFetcher.m in Sources */,
