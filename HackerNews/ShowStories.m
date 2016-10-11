@@ -25,6 +25,7 @@
     commentsText = [NSMutableArray array];
     allDBComments = [[NSMutableArray alloc] init];
     allServerComments = [[NSMutableArray alloc] init];
+    BOOL flag = false;
     
     [super viewWillAppear:animated];
     if (self.url.length > 0) {
@@ -37,12 +38,15 @@
         else {
             for (NSInteger i = 0; i < allDBComments.count; i++) {
                 NewsComments *commentItem = allDBComments[i];
-                if (![commentItem.newsId isEqual:self.newsId]) {
-                    [self fetchCommentsFromServer];
-                    [self saveCommentsToDB];
-                    [self fetchCommentsFromDB];
+                if ([commentItem.newsId isEqual:self.newsId]) {
+                    flag = true;
                     break;
                 }
+            }
+            if (!flag) {
+                [self fetchCommentsFromServer];
+                [self saveCommentsToDB];
+                [self fetchCommentsFromDB];
             }
         
         
@@ -136,6 +140,8 @@
     for(NSInteger i = 0 ; i < allServerComments.count ; i++) {
         comment = allServerComments[i];
         NSString *commentText = [comment objectForKey:@"text"];
+        NSInteger length = commentText.length;
+        if( length < 1) continue;
         NSString *commentUser = [comment objectForKey:@"by"];
         NSString *commentId = [comment objectForKey:@"id"];
         
@@ -184,12 +190,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                       reuseIdentifier:@"comment"];
         
-        [[cell textLabel] setNumberOfLines:0]; // unlimited number of lines
+        [[cell textLabel] setNumberOfLines:5]; // unlimited number of lines
         [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
         [[cell textLabel] setFont:[UIFont systemFontOfSize: 14.0]];
     }
     else {
-        [[cell textLabel] setNumberOfLines:0]; // unlimited number of lines
+        [[cell textLabel] setNumberOfLines:5]; // unlimited number of lines
         [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
         [[cell textLabel] setFont:[UIFont systemFontOfSize: 14.0]];
     }
@@ -205,7 +211,7 @@
 {
     // this method is called for each cell and returns height
     NSDictionary *commentItem = currentDBComment[indexPath.item];
-    NSString *text = [commentItem objectForKey:@"commentItem"];
+    NSString *text = [commentItem objectForKey:@"commentText"];
     CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize: 14.0] forWidth:[tableView frame].size.width - 40.0 lineBreakMode:NSLineBreakByWordWrapping];
     // return either default height or height to fit the text
     return textSize.height < 44.0 ? 44.0 : textSize.height;
